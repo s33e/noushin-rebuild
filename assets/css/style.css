@@ -157,9 +157,17 @@ a {
     transition: var(--transition);
 }
 
+/* Homepage - No Scroll */
+body.homepage {
+    overflow: hidden;
+    height: 100vh;
+}
+
 /* Hero Slideshow */
 .hero-slideshow {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     height: 100vh;
     width: 100%;
     overflow: hidden;
