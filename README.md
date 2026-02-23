@@ -71,8 +71,8 @@ Upload to any web host - it's just static files. Works on:
 
 To complete the site, you'll need to create:
 1. `biographie.html` - About page
-2. `exterieur.html` - Outdoor photography gallery
-3. `interieur.html` - Indoor photography gallery
+2. `exterieur.html` - Outdoor sculpture gallery
+3. `interieur.html` - Indoor sculpture gallery
 4. `evenements.html` - Events page
 5. `contact.html` - Contact form
 

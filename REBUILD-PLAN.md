@@ -1,5 +1,5 @@
 # Complete Website Rebuild Plan
-## Noushin Bagherzadeh Photography Portfolio
+## Noushin Bagherzadeh Sculpture Portfolio
 
 **Date:** 2026-02-23  
 **Status:** Planning Phase  
