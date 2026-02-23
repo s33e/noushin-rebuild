@@ -1,12 +1,12 @@
-// Slideshow functionality
+// Slideshow functionality with touch swipe support
 class Slideshow {
     constructor() {
         this.slides = document.querySelectorAll('.slide');
-        this.dots = document.querySelectorAll('.dot');
-        this.prevBtn = document.querySelector('.slide-arrow.prev');
-        this.nextBtn = document.querySelector('.slide-arrow.next');
+        this.container = document.querySelector('.slideshow-container');
         this.currentSlide = 0;
         this.slideInterval = null;
+        this.touchStartX = 0;
+        this.touchEndX = 0;
         
         this.init();
     }
@@ -14,22 +14,79 @@ class Slideshow {
     init() {
         if (!this.slides.length) return;
         
-        // Button listeners
-        this.prevBtn.addEventListener('click', () => this.changeSlide(-1));
-        this.nextBtn.addEventListener('click', () => this.changeSlide(1));
+        // Touch swipe listeners
+        this.container.addEventListener('touchstart', (e) => {
+            this.touchStartX = e.changedTouches[0].screenX;
+            this.stopAutoSlide();
+        }, { passive: true });
         
-        // Dot listeners
-        this.dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => this.goToSlide(index));
+        this.container.addEventListener('touchend', (e) => {
+            this.touchEndX = e.changedTouches[0].screenX;
+            this.handleSwipe();
+            this.startAutoSlide();
+        }, { passive: true });
+        
+        // Mouse drag for desktop (optional)
+        let isDragging = false;
+        let startX = 0;
+        
+        this.container.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            this.stopAutoSlide();
         });
         
-        // Auto-advance every 5 seconds
+        this.container.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+        });
+        
+        this.container.addEventListener('mouseup', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            const endX = e.clientX;
+            const diff = startX - endX;
+            
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                    this.changeSlide(1); // Swipe left = next
+                } else {
+                    this.changeSlide(-1); // Swipe right = prev
+                }
+            }
+            this.startAutoSlide();
+        });
+        
+        this.container.addEventListener('mouseleave', () => {
+            if (isDragging) {
+                isDragging = false;
+                this.startAutoSlide();
+            }
+        });
+        
+        // Start auto-advance
         this.startAutoSlide();
         
-        // Pause on hover
-        const container = document.querySelector('.slideshow-container');
-        container.addEventListener('mouseenter', () => this.stopAutoSlide());
-        container.addEventListener('mouseleave', () => this.startAutoSlide());
+        // Pause on hover (desktop)
+        this.container.addEventListener('mouseenter', () => this.stopAutoSlide());
+        this.container.addEventListener('mouseleave', () => {
+            if (!isDragging) this.startAutoSlide();
+        });
+    }
+    
+    handleSwipe() {
+        const swipeThreshold = 50; // Minimum swipe distance
+        const diff = this.touchStartX - this.touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                // Swiped left - next slide
+                this.changeSlide(1);
+            } else {
+                // Swiped right - previous slide
+                this.changeSlide(-1);
+            }
+        }
     }
     
     changeSlide(direction) {
@@ -44,32 +101,22 @@ class Slideshow {
         this.updateSlide();
     }
     
-    goToSlide(index) {
-        this.currentSlide = index;
-        this.updateSlide();
-    }
-    
     updateSlide() {
-        // Update slides
         this.slides.forEach((slide, index) => {
             slide.classList.toggle('active', index === this.currentSlide);
-        });
-        
-        // Update dots
-        this.dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === this.currentSlide);
         });
     }
     
     startAutoSlide() {
         this.slideInterval = setInterval(() => {
             this.changeSlide(1);
-        }, 5000);
+        }, 4000); // 4 seconds per slide
     }
     
     stopAutoSlide() {
         if (this.slideInterval) {
             clearInterval(this.slideInterval);
+            this.slideInterval = null;
         }
     }
 }
@@ -139,18 +186,4 @@ document.addEventListener('DOMContentLoaded', () => {
     new Slideshow();
     new MobileMenu();
     new HeaderScroll();
-});
-
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
 });
