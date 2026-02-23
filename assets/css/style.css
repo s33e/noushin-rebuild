@@ -164,8 +164,8 @@ a {
 .hero-slideshow {
     margin-top: 70px;
     position: relative;
-    height: 70vh;
-    min-height: 500px;
+    height: 80vh;
+    min-height: 600px;
     overflow: hidden;
 }
 
@@ -289,6 +289,10 @@ a {
         display: flex;
     }
     
+    .logo img {
+        height: 18px;
+    }
+    
     .nav-menu {
         position: fixed;
         top: 70px;
@@ -324,33 +328,58 @@ a {
     }
     
     .hero-slideshow {
-        height: 50vh;
-        min-height: 400px;
+        height: 65vh;
+        min-height: 450px;
+        margin-top: 60px;
     }
     
     .slide-arrow {
-        font-size: 30px;
-        padding: 10px 15px;
+        font-size: 32px;
+        padding: 12px 18px;
+        background: rgba(255, 255, 255, 0.9);
+    }
+    
+    .slide-dots {
+        bottom: 20px;
+    }
+    
+    .dot {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .main-content {
+        padding: 60px 0;
     }
     
     .content-wrapper h1 {
-        font-size: 32px;
+        font-size: 36px;
+        margin-bottom: 15px;
     }
     
     .content-wrapper p {
-        font-size: 16px;
+        font-size: 17px;
     }
 }
 
 @media (max-width: 480px) {
+    .logo img {
+        height: 16px;
+    }
+    
+    .header-content {
+        padding: 12px 0;
+    }
+    
     .hero-slideshow {
-        height: 40vh;
-        min-height: 300px;
+        height: 60vh;
+        min-height: 400px;
+        margin-top: 55px;
     }
     
     .slide-arrow {
-        font-size: 24px;
-        padding: 8px 12px;
+        font-size: 28px;
+        padding: 10px 14px;
     }
     
     .slide-arrow.prev {
@@ -359,5 +388,13 @@ a {
     
     .slide-arrow.next {
         right: 10px;
+    }
+    
+    .content-wrapper h1 {
+        font-size: 28px;
+    }
+    
+    .content-wrapper p {
+        font-size: 16px;
     }
 }
