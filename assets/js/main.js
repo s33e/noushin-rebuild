@@ -1,4 +1,4 @@
-// Slideshow functionality with touch swipe support
+// Slideshow with robust touch swipe support
 class Slideshow {
     constructor() {
         this.slides = document.querySelectorAll('.slide');
@@ -6,98 +6,108 @@ class Slideshow {
         this.currentSlide = 0;
         this.slideInterval = null;
         this.touchStartX = 0;
+        this.touchStartY = 0;
         this.touchEndX = 0;
+        this.touchEndY = 0;
+        this.minSwipeDistance = 50;
         
         this.init();
     }
     
     init() {
-        if (!this.slides.length) return;
+        if (!this.slides.length || !this.container) return;
         
-        // Touch swipe listeners
+        // Touch events
         this.container.addEventListener('touchstart', (e) => {
-            this.touchStartX = e.changedTouches[0].screenX;
+            this.touchStartX = e.touches[0].clientX;
+            this.touchStartY = e.touches[0].clientY;
             this.stopAutoSlide();
         }, { passive: true });
         
+        this.container.addEventListener('touchmove', (e) => {
+            // Prevent vertical scroll while swiping horizontally
+            const touchX = e.touches[0].clientX;
+            const touchY = e.touches[0].clientY;
+            const diffX = Math.abs(touchX - this.touchStartX);
+            const diffY = Math.abs(touchY - this.touchStartY);
+            
+            if (diffX > diffY) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
         this.container.addEventListener('touchend', (e) => {
-            this.touchEndX = e.changedTouches[0].screenX;
+            this.touchEndX = e.changedTouches[0].clientX;
+            this.touchEndY = e.changedTouches[0].clientY;
             this.handleSwipe();
             this.startAutoSlide();
         }, { passive: true });
         
-        // Mouse drag for desktop (optional)
+        // Mouse drag (desktop)
         let isDragging = false;
         let startX = 0;
         
         this.container.addEventListener('mousedown', (e) => {
             isDragging = true;
             startX = e.clientX;
+            this.container.style.cursor = 'grabbing';
             this.stopAutoSlide();
+            e.preventDefault();
         });
         
-        this.container.addEventListener('mousemove', (e) => {
+        document.addEventListener('mousemove', (e) => {
             if (!isDragging) return;
             e.preventDefault();
         });
         
-        this.container.addEventListener('mouseup', (e) => {
+        document.addEventListener('mouseup', (e) => {
             if (!isDragging) return;
             isDragging = false;
+            this.container.style.cursor = 'grab';
+            
             const endX = e.clientX;
             const diff = startX - endX;
             
-            if (Math.abs(diff) > 50) {
+            if (Math.abs(diff) > this.minSwipeDistance) {
                 if (diff > 0) {
-                    this.changeSlide(1); // Swipe left = next
+                    this.next();
                 } else {
-                    this.changeSlide(-1); // Swipe right = prev
+                    this.prev();
                 }
             }
             this.startAutoSlide();
         });
         
-        this.container.addEventListener('mouseleave', () => {
-            if (isDragging) {
-                isDragging = false;
-                this.startAutoSlide();
-            }
-        });
+        // Set cursor
+        this.container.style.cursor = 'grab';
         
         // Start auto-advance
         this.startAutoSlide();
-        
-        // Pause on hover (desktop)
-        this.container.addEventListener('mouseenter', () => this.stopAutoSlide());
-        this.container.addEventListener('mouseleave', () => {
-            if (!isDragging) this.startAutoSlide();
-        });
     }
     
     handleSwipe() {
-        const swipeThreshold = 50; // Minimum swipe distance
-        const diff = this.touchStartX - this.touchEndX;
+        const diffX = this.touchStartX - this.touchEndX;
+        const diffY = this.touchStartY - this.touchEndY;
         
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) {
+        // Only react to horizontal swipes
+        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > this.minSwipeDistance) {
+            if (diffX > 0) {
                 // Swiped left - next slide
-                this.changeSlide(1);
+                this.next();
             } else {
                 // Swiped right - previous slide
-                this.changeSlide(-1);
+                this.prev();
             }
         }
     }
     
-    changeSlide(direction) {
-        this.currentSlide += direction;
-        
-        if (this.currentSlide >= this.slides.length) {
-            this.currentSlide = 0;
-        } else if (this.currentSlide < 0) {
-            this.currentSlide = this.slides.length - 1;
-        }
-        
+    next() {
+        this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+        this.updateSlide();
+    }
+    
+    prev() {
+        this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
         this.updateSlide();
     }
     
@@ -108,9 +118,10 @@ class Slideshow {
     }
     
     startAutoSlide() {
+        this.stopAutoSlide();
         this.slideInterval = setInterval(() => {
-            this.changeSlide(1);
-        }, 4000); // 4 seconds per slide
+            this.next();
+        }, 4000);
     }
     
     stopAutoSlide() {
@@ -132,28 +143,28 @@ class MobileMenu {
     }
     
     init() {
-        if (!this.toggle) return;
+        if (!this.toggle || !this.menu) return;
         
         // Toggle menu
-        this.toggle.addEventListener('click', () => {
+        this.toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
             this.menu.classList.toggle('active');
             this.toggle.classList.toggle('active');
         });
         
-        // Submenu toggle on mobile
+        // Submenu toggle
         this.submenuParents.forEach(parent => {
             const link = parent.querySelector('a');
             link.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    parent.classList.toggle('active');
-                }
+                e.preventDefault();
+                e.stopPropagation();
+                parent.classList.toggle('active');
             });
         });
         
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
-            if (!e.target.closest('.nav') && this.menu.classList.contains('active')) {
+            if (!e.target.closest('.nav') && !e.target.closest('.mobile-menu-toggle')) {
                 this.menu.classList.remove('active');
                 this.toggle.classList.remove('active');
             }
@@ -161,29 +172,8 @@ class MobileMenu {
     }
 }
 
-// Header scroll effect
-class HeaderScroll {
-    constructor() {
-        this.header = document.querySelector('.header');
-        this.init();
-    }
-    
-    init() {
-        if (!this.header) return;
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                this.header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                this.header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
-            }
-        });
-    }
-}
-
-// Initialize everything when DOM is ready
+// Initialize
 document.addEventListener('DOMContentLoaded', () => {
     new Slideshow();
     new MobileMenu();
-    new HeaderScroll();
 });
