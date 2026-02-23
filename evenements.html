@@ -58,6 +58,10 @@
         @media (max-width: 768px) {
             .events-page { margin-top: 100px; }
             .event-card { padding: 25px; }
+            .event-card > div:first-child {
+                flex: 1 1 100% !important;
+                margin-bottom: 20px;
+            }
         }
     </style>
 </head>
@@ -95,32 +99,45 @@
     <main class="events-page">
         <div class="container">
             <div class="event-section">
-                <h2>Ongoing</h2>
+                <h2>En cours</h2>
                 <!-- Currently no ongoing events -->
             </div>
 
             <div class="event-section">
-                <h2>Incoming</h2>
-                <div class="event-card">
-                    <h3>Féminin Pluriel</h3>
-                    
-                    <div class="event-info">
-                        <strong>Quand ?</strong>
-                        <p>du 14 au 23 er November 2025</p>
-                        <p>Vernissage: le jeudi 13 novembre de 18h à 20h30</p>
+                <h2>À venir</h2>
+                <div class="event-card" style="display: flex; gap: 40px; align-items: flex-start; flex-wrap: wrap;">
+                    <div style="flex: 0 0 250px; min-width: 200px;">
+                        <a href="https://noushinbagherzadeh.be/wp-content/uploads/2025/09/Affiche-Feminin-Pluriel-def.pdf" target="_blank" style="display: block; border: 1px solid #ddd; background: #fff; padding: 10px; text-align: center; text-decoration: none; color: #333;">
+                            <iframe src="assets/img/feminin-pluriel-poster.pdf" style="width: 100%; height: 350px; border: none; pointer-events: none;"></iframe>
+                            <div style="margin-top: 10px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Voir l'affiche →</div>
+                        </a>
                     </div>
+                    <div style="flex: 1;">
+                        <h3>Féminin Pluriel</h3>
+                        
+                        <div class="event-info">
+                            <strong>Quand ?</strong>
+                            <p>du 14 au 23 er November 2025</p>
+                            <p>Vernissage: le jeudi 13 novembre de 18h à 20h30</p>
+                        </div>
 
-                    <div class="event-info">
-                        <strong>Ouverture de l'exposition:</strong>
-                        <p>Les samedis et dimanches de 13h à 18h</p>
-                        <p>Les mercredis, jeudis et vendredis de 15h à 18h</p>
-                    </div>
+                        <div class="event-info">
+                            <strong>Ouverture de l'exposition:</strong>
+                            <p>Les samedis et dimanches de 13h à 18h</p>
+                            <p>Les mercredis, jeudis et vendredis de 15h à 18h</p>
+                        </div>
 
-                    <div class="event-info">
-                        <strong>Où ?</strong>
-                        <p>Château de l'Ermitage<br>
-                        rue de l'Ermitage, 23<br>
-                        1300 Wavre</p>
+                        <div class="event-info">
+                            <strong>Où ?</strong>
+                            <p>Château de l'Ermitage<br>
+                            rue de l'Ermitage, 23<br>
+                            1300 Wavre</p>
+                        </div>
+
+                        <div class="event-info">
+                            <strong>Infos</strong>
+                            <p><a href="http://www.wavre.be" target="_blank" class="event-link">Site web</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
