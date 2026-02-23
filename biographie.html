@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos - Noushin Bagherzadeh</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .bio-page {
+            margin-top: 120px;
+            padding-bottom: 80px;
+        }
+        .bio-image {
+            width: 100%;
+            margin-bottom: 60px;
+        }
+        .bio-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .bio-intro {
+            font-size: 24px;
+            font-weight: 300;
+            line-height: 1.5;
+            margin-bottom: 60px;
+            color: #333;
+        }
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+        .bio-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .bio-section ul {
+            list-style: none;
+        }
+        .bio-section li {
+            font-size: 15px;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        .bio-section a {
+            color: #666;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        .bio-section a:hover {
+            color: #000;
+        }
+        @media (max-width: 768px) {
+            .bio-page { margin-top: 100px; }
+            .bio-grid { grid-template-columns: 1fr; gap: 40px; }
+            .bio-intro { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <button class="mobile-menu-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="logo">
+                    <a href="new-index.html">NOUSHIN BAGHERZADEH</a>
+                </div>
+                <nav class="nav">
+                    <ul class="nav-menu">
+                        <li><a href="new-index.html">Accueil</a></li>
+                        <li><a href="biographie.html" class="active">À propos</a></li>
+                        <li class="has-submenu">
+                            <a href="javascript:void(0)">Gallerie</a>
+                            <ul class="submenu">
+                                <li><a href="#">Extérieure</a></li>
+                                <li><a href="#">Intérieur</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Événement</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="bio-page">
+        <div class="container">
+            <div class="bio-image">
+                <img src="assets/img/DSC04207.jpg" alt="Noushin Bagherzadeh">
+            </div>
+
+            <div class="bio-intro">
+                Je joue avec les espaces vides et pleins. À l’instant même où l’un domine l’autre, le volume prend vie. Ma vision se développe au fil du travail et je me laisse diriger par l’énergie des matériaux. Mes matériaux de prédilection sont plutôt le bois et le métal.
+            </div>
+
+            <div class="bio-grid">
+                <div class="bio-section">
+                    <h4>Ma formation</h4>
+                    <ul>
+                        <li>Diplôme de sculpture à l’école d’art de Braine l’Alleud</li>
+                        <li>Licence en graphisme obtenu à “University of Art, Téhéran” en 1995</li>
+                        <li>Née à Téhéran en 1969, en Belgique depuis 2007</li>
+                    </ul>
+                </div>
+
+                <div class="bio-section">
+                    <h4>Expositions</h4>
+                    <ul>
+                        <li>2023: <a href="https://WWW.ABCETDESIGN.BE" target="_blank">ABC&Design</a></li>
+                        <li>2023: <a href="https://www.biennale.ch" target="_blank">Biennale de Montreux</a></li>
+                        <li>2022: <a href="https://www.biennaledelasculpturealasne.be/biennale-2022/bagherzadeh-noushin" target="_blank">Biennale de la sculpture, Lasne</a></li>
+                        <li>2022: <a href="https://www.sjtn.brussels/fr/agenda/property-fielddateagenda/30e-exposition-de-sculpture-monumentale" target="_blank">Sculpture monumentale Square Armand Steurs, Bruxelles</a></li>
+                        <li>2021: <a href="http://www.galeriedidierdevillez.be" target="_blank">Galerie Didier Devillez, Bruxelles</a></li>
+                        <li>2021: TEN Gallery, Knokke-Hesit</li>
+                        <li>2020: Sculpture monumentale Square Armand Steurs, Bruxelles</li>
+                        <li>2019: Fête de la Saint Martin, Tourrines-La-Grosse</li>
+                        <li>2019: Expo coup de coeur #WeArt XL, Ixelles</li>
+                        <li>2019: <a href="https://www.chateau-de-bosc.com/exposition-de-sculptures-chemins-de-traverse" target="_blank">Exposition “chemins de traverse” au Château de Bosc, France</a></li>
+                        <li>2018: <a href="http://tourinnes.be/parcours/noushin-bagherzadeh/" target="_blank">Parcours d’artiste, Tourrines-La-Grosse</a></li>
+                        <li>2013: Galerie ROLLEBEEK, Bruxelles</li>
+                        <li>2013: <a href="https://www.belfius.be/about-us/fr/actualites/art-beats" target="_blank">Exposition à Belfius ART, Bruxelles</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
