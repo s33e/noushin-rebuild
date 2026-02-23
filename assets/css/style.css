@@ -56,15 +56,18 @@ a {
     justify-content: space-between;
     align-items: center;
     padding: 15px 0;
+    gap: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
 }
 
 .logo img {
     height: 21px;
     width: auto;
-}
-
-.logo-light {
-    display: none;
+    display: block;
 }
 
 /* Navigation */
