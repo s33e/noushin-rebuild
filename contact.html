@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Noushin Bagherzadeh</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .contact-page {
+            margin-top: 120px;
+            padding-bottom: 80px;
+        }
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .contact-section {
+            margin-bottom: 50px;
+        }
+        .contact-section h2 {
+            font-size: 24px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .contact-info {
+            font-size: 16px;
+            line-height: 2;
+        }
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        .social-links {
+            margin-top: 20px;
+        }
+        .social-links a {
+            display: inline-block;
+            margin-right: 20px;
+            font-size: 16px;
+        }
+        @media (max-width: 768px) {
+            .contact-page { margin-top: 100px; }
+            .contact-section h2 { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <button class="mobile-menu-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="logo">
+                    <a href="new-index.html">NOUSHIN BAGHERZADEH</a>
+                </div>
+                <nav class="nav">
+                    <ul class="nav-menu">
+                        <li><a href="new-index.html">Accueil</a></li>
+                        <li><a href="biographie.html">À propos</a></li>
+                        <li class="has-submenu">
+                            <a href="javascript:void(0)">Gallerie</a>
+                            <ul class="submenu">
+                                <li><a href="exterieur.html">Extérieure</a></li>
+                                <li><a href="interieur.html">Intérieur</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="evenements.html">Événement</a></li>
+                        <li><a href="contact.html" class="active">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="contact-page">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-section">
+                    <h2>Info</h2>
+                    <div class="contact-info">
+                        <p><strong>Email:</strong><br>
+                        <a href="mailto:info@noushinbagherzadeh.be">info@noushinbagherzadeh.be</a></p>
+                        
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/noushinbagherzadeh/" target="_blank" rel="noopener">Instagram</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

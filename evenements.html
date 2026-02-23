@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Événements - Noushin Bagherzadeh</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .events-page {
+            margin-top: 120px;
+            padding-bottom: 80px;
+        }
+        .event-section {
+            margin-bottom: 60px;
+        }
+        .event-section h2 {
+            font-size: 28px;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .event-card {
+            background: #f9f9f9;
+            padding: 40px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+        }
+        .event-card h3 {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+        .event-info {
+            margin-bottom: 15px;
+        }
+        .event-info strong {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #666;
+        }
+        .event-info p {
+            margin: 0;
+            line-height: 1.6;
+        }
+        .event-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .events-page { margin-top: 100px; }
+            .event-card { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <button class="mobile-menu-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="logo">
+                    <a href="new-index.html">NOUSHIN BAGHERZADEH</a>
+                </div>
+                <nav class="nav">
+                    <ul class="nav-menu">
+                        <li><a href="new-index.html">Accueil</a></li>
+                        <li><a href="biographie.html">À propos</a></li>
+                        <li class="has-submenu">
+                            <a href="javascript:void(0)">Gallerie</a>
+                            <ul class="submenu">
+                                <li><a href="exterieur.html">Extérieure</a></li>
+                                <li><a href="interieur.html">Intérieur</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="evenements.html" class="active">Événement</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="events-page">
+        <div class="container">
+            <div class="event-section">
+                <h2>Ongoing</h2>
+                <!-- Currently no ongoing events -->
+            </div>
+
+            <div class="event-section">
+                <h2>Incoming</h2>
+                <div class="event-card">
+                    <h3>Féminin Pluriel</h3>
+                    
+                    <div class="event-info">
+                        <strong>Quand ?</strong>
+                        <p>du 14 au 23 er November 2025</p>
+                        <p>Vernissage: le jeudi 13 novembre de 18h à 20h30</p>
+                    </div>
+
+                    <div class="event-info">
+                        <strong>Ouverture de l'exposition:</strong>
+                        <p>Les samedis et dimanches de 13h à 18h</p>
+                        <p>Les mercredis, jeudis et vendredis de 15h à 18h</p>
+                    </div>
+
+                    <div class="event-info">
+                        <strong>Où ?</strong>
+                        <p>Château de l'Ermitage<br>
+                        rue de l'Ermitage, 23<br>
+                        1300 Wavre</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
