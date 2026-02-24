@@ -136,37 +136,55 @@ class Slideshow {
 class MobileMenu {
     constructor() {
         this.toggle = document.querySelector('.mobile-menu-toggle');
-        this.menu = document.querySelector('.nav-menu');
+        this.nav = document.querySelector('.nav');
         this.submenuParents = document.querySelectorAll('.has-submenu');
         
         this.init();
     }
     
     init() {
-        if (!this.toggle || !this.menu) return;
+        if (!this.toggle || !this.nav) return;
         
         // Toggle menu
         this.toggle.addEventListener('click', (e) => {
             e.stopPropagation();
-            this.menu.classList.toggle('active');
+            this.nav.classList.toggle('active');
             this.toggle.classList.toggle('active');
         });
         
-        // Submenu toggle
+        // Submenu toggle (mobile only)
         this.submenuParents.forEach(parent => {
             const link = parent.querySelector('a');
             link.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                parent.classList.toggle('active');
+                // Only prevent default on mobile
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    parent.classList.toggle('active');
+                }
             });
         });
         
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
             if (!e.target.closest('.nav') && !e.target.closest('.mobile-menu-toggle')) {
-                this.menu.classList.remove('active');
+                this.nav.classList.remove('active');
                 this.toggle.classList.remove('active');
+                // Close all submenus
+                this.submenuParents.forEach(parent => {
+                    parent.classList.remove('active');
+                });
+            }
+        });
+        
+        // Close mobile menu on window resize to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                this.nav.classList.remove('active');
+                this.toggle.classList.remove('active');
+                this.submenuParents.forEach(parent => {
+                    parent.classList.remove('active');
+                });
             }
         });
     }
